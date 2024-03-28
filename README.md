@@ -15,8 +15,8 @@ Once done, follow these steps to use it:
         private SoReferenceManager referenceManager; // assign this in the inspector
         private SomeClass self;
 
-        // on your START or AWAKE
-        private void Start()
+        // using awake to ensure it gets registered before it is being accesssed in a Start elsewhere
+        private void Awake()
         {
             self = this; // in order to pass a reference ("without duplicating") we need to store this class then pass it to the function.
 
@@ -43,15 +43,18 @@ Once done, follow these steps to use it:
   }
 ```
 
-- Finally, in order for you to retrieve objects of a specific Type, you would do this:
+- Finally, in order for you to retrieve objects of a specific Type, you would just need to attach this ScriptableObject asset to any Class that needs to get a reference from another script in a separate SubScene like this:
   
  ```cpp
-  public class SomeClass{
+  public class SomeOTHERClass{
 
         private SoReferenceManager referenceManager; // assign this in the inspector
-
-        //... prev code
         List<EnemyList> enemyList = new List<EnemyList>();
+
+        // considder using it in the START, to ensure that the other classess have been registered successfully, given the Unity execution steps
+        private Start(){
+            GetReferences();
+        }
 
         private void GetReferences()
         {
