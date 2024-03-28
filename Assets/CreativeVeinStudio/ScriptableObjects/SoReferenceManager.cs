@@ -10,7 +10,7 @@ namespace Creative_Vein_Studio.Tools.Scriptable_Objects
     /// Simply create the S.O asset in your project and then assign it as a property to any script that you want to register.
     /// Then access the Register and Unregister in the Start and OnDestroy of the class using it
     /// </summary>
-    [CreateAssetMenu(fileName = "ObjectRegistrar", menuName = "CVeinStudio/Registrar")]
+    [CreateAssetMenu(fileName = "ReferenceManager", menuName = "CVeinStudio/ReferenceManager")]
     public class SoReferenceManager : ScriptableObject
     {
         [SerializeField] List<ContentInfo> gameContent = new List<ContentInfo>();
